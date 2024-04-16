@@ -50,18 +50,28 @@
             
             switch (this.className.split(' ')[0]) {
                 case "moreinfobtn1":
-                    modal = document.querySelector('#modal1');
+                    modal = document.querySelector('#info_modal1');
                     break;
                 case "moreinfobtn2":
-                    modal = document.querySelector('#modal2');
+                    modal = document.querySelector('#info_modal2');
                     break;
                 case "moreinfobtn3":
-                    modal = document.querySelector('#modal3');
+                    modal = document.querySelector('#info_modal3');
                     break;
                 case "moreinfobtn4":
-                    modal = document.querySelector('#modal4');
+                    modal = document.querySelector('#info_modal4');
                     break;
             }
+
+            if (modal.style.display === "none")
+                modal.style.display = "flex";
+            else
+                modal.style.display = "none";
+        });
+
+
+        $(".commbtn").click(async function () {
+            let modal = document.querySelector('#comm_modal');
 
             if (modal.style.display === "none")
                 modal.style.display = "flex";
@@ -74,7 +84,7 @@
 <body>
     <div class="one">
         <div class="nine">
-            <h1>eiight<span>8</span></h1>
+            <h1>eight<span>8</span></h1>
         </div>
     </div>
     <div class="main_up_team">
@@ -151,7 +161,7 @@
         </div>
     </div>
 
-    <div id="modal1" class="modal">
+    <div id="info_modal1" class="modal">
         <div class="modal_body">
             <div class="row">
                 <img src=""
@@ -176,7 +186,7 @@
             <button type="button" class="moreinfobtn1 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
     </div>
-    <div id="modal2" class="modal">
+    <div id="info_modal2" class="modal">
         <div class="modal_body">
             <div class="row">
                 <img src=""
@@ -201,7 +211,7 @@
             <button type="button" class="moreinfobtn2 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
     </div>
-    <div id="modal3" class="modal">
+    <div id="info_modal3" class="modal">
         <div class="modal_body">
             <div class="row">
                 <img src=""
@@ -226,7 +236,7 @@
             <button type="button" class="moreinfobtn3 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
     </div>
-    <div id="modal4" class="modal">
+    <div id="info_modal4" class="modal">
         <div class="modal_body">
             <div class="row">
                 <img src=""
@@ -251,5 +261,18 @@
             <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
     </div>
-
+    <div id="comm_modal" class="modal">
+        <div class="modal_body modal_mini">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="title" placeholder="이름">
+                <label for="floatingInput">이름</label>
+            </div>
+            <div class="commentbox form-floating mb-3">
+                <textarea type="text" class="form-control" id="comment" placeholder="내용"></textarea>
+                <label for="floatingInput">내용</label>
+            </div>
+            <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
+        </div>
+    </div>
+    <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
 </html>
