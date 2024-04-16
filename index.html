@@ -66,6 +66,15 @@
                 modal.style.display = "none";
         });
 
+        $(".updatebtn").click(async function () {
+            let tempDoc = await getDoc(doc(db, "projectEight", this.value));
+
+            await deleteDoc(doc(db, "projectEight", this.value));
+
+            $('#title').attr('value', tempDoc.data()['title']);
+            $('#comment').html(tempDoc.data()['comment']);
+        });
+        
         $(".commbtn").click(async function () {
             let modal = document.querySelector('#comm_modal');
 
@@ -74,6 +83,42 @@
             else
                 modal.style.display = "none";
         });
+
+        $("#postingbtn").click(async function () {
+            let name = $('#name').val();
+            let comment = $('#comment').val();
+
+            let doc = {
+                'name': name,
+                'comment': comment,
+            };
+
+            await addDoc(collection(db, "projectEight"), doc);
+
+            alert('저장 완료!');
+            window.location.reload();
+        });
+
+        $(".deletebtn").click(async function () {
+            await deleteDoc(doc(db, "projectEight", this.value));
+
+            alert("삭제 완료!");
+            window.location.reload();
+        });
+        
+        let docs = await getDocs(collection(db, "projectEight"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let id = doc.id;
+            let name = row['name'];
+            let comment = row['comment'];
+
+            let temp_html;
+
+            $('#card').append(temp_html);
+        });
+
     </script>
 </head>
 
@@ -117,7 +162,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="card horizontal_card">
             <div class="card_content">
@@ -150,8 +195,7 @@
     <div id="info_modal1" class="modal">
         <div class="modal_body">
             <div class="row">
-                <img src="양재석.jpg"
-                    style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
+                <img src="양재석.jpg" style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
                 <div class="col-md-6" style="margin-top: 80px;">
                     <h3 class="card-title">양재석</h3>
                     <p class="card-text">ENTJ</p>
