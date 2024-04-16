@@ -74,7 +74,7 @@
             $('#title').attr('value', tempDoc.data()['title']);
             $('#comment').html(tempDoc.data()['comment']);
         });
-        
+
         $(".commbtn").click(async function () {
             let modal = document.querySelector('#comm_modal');
 
@@ -105,7 +105,7 @@
             alert("삭제 완료!");
             window.location.reload();
         });
-        
+
         let docs = await getDocs(collection(db, "projectEight"));
         docs.forEach((doc) => {
             let row = doc.data();
@@ -202,15 +202,15 @@
                 </div>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>소개</h3>
+                <h3 class="modaltitle">소개</h3>
                 <p>이번에 Eight 팀의 팀장을 맡게 된 양재석입니다!<br>프로젝트 진행하는 동안 잘 부탁드립니다ㅎㅎ</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>역할</h3>
+                <h3 class="modaltitle">역할</h3>
                 <p>S.A. 및 와이어프레임 작성<br>GitHub 프로젝트 업로드 및 배포<br>페이지 모달창부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>Blog & GitHub</h3>
+                <h3 class="modaltitle">Blog & GitHub</h3>
                 <p>https://velog.io/@hyeonseol22<br>https://github.com/hyeonseol00</p>
             </div>
             <button type="button" class="moreinfobtn1 moreinfobtn btn btn-primary btn-lg">닫기</button>
@@ -219,23 +219,22 @@
     <div id="info_modal3" class="modal">
         <div class="modal_body">
             <div class="row">
-                <img src=""
-                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <img src="" style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
                 <div class="col-md-6" style="margin-top: 80px;">
                     <h3 class="card-title">이성운</h3>
                     <p class="card-text">INFJ</p>
                 </div>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>소개</h3>
+                <h3 class="modaltitle">소개</h3>
                 <p>내용</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>역할</h3>
+                <h3 class="modaltitle">역할</h3>
                 <p>페이지 타이틀 및 팀원 자기소개 카드부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>Blog & GitHub</h3>
+                <h3 class="modaltitle">Blog & GitHub</h3>
                 <p>https://development-getting-better.tistory.com/<br>https://github.com/sw-64/</p>
             </div>
             <button type="button" class="moreinfobtn3 moreinfobtn btn btn-primary btn-lg">닫기</button>
@@ -244,23 +243,22 @@
     <div id="info_modal4" class="modal">
         <div class="modal_body">
             <div class="row">
-                <img src=""
-                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <img src="" style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
                 <div class="col-md-6" style="margin-top: 80px;">
                     <h3 class="card-title">김영규</h3>
                     <p class="card-text">ESFJ</p>
                 </div>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>소개</h3>
+                <h3 class="modaltitle">소개</h3>
                 <p>내용</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>역할</h3>
+                <h3 class="modaltitle">역할</h3>
                 <p>페이지 방명록(댓글)부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>Blog & GitHub</h3>
+                <h3 class="modaltitle">Blog & GitHub</h3>
                 <p>https://github.com/ykyu99/</p>
             </div>
             <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>

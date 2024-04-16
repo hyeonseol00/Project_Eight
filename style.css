@@ -170,3 +170,7 @@ body {
     resize: none;
     height: 100%;
 }
+
+.modaltitle{
+    margin-top: 10px;
+}
