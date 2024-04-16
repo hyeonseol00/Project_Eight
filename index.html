@@ -8,11 +8,15 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
+
     <script type="module">
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -38,10 +42,37 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const modal = document.querySelector('.modal');
-        const btnOpenModal = document.querySelector('.btn-open-modal');
+        //const modal = document.querySelector('#modal1');
+        //const btnOpenModal = document.querySelector('.btn-open-modal');
 
         $(".moreinfobtn").click(async function () {
+            let modal;
+            
+            switch (this.className.split(' ')[0]) {
+                case "moreinfobtn1":
+                    modal = document.querySelector('#info_modal1');
+                    break;
+                case "moreinfobtn2":
+                    modal = document.querySelector('#info_modal2');
+                    break;
+                case "moreinfobtn3":
+                    modal = document.querySelector('#info_modal3');
+                    break;
+                case "moreinfobtn4":
+                    modal = document.querySelector('#info_modal4');
+                    break;
+            }
+
+            if (modal.style.display === "none")
+                modal.style.display = "flex";
+            else
+                modal.style.display = "none";
+        });
+
+
+        $(".commbtn").click(async function () {
+            let modal = document.querySelector('#comm_modal');
+
             if (modal.style.display === "none")
                 modal.style.display = "flex";
             else
@@ -53,7 +84,7 @@
 <body>
     <div class="one">
         <div class="nine">
-            <h1>eiight<span>8</span></h1>
+            <h1>eight<span>8</span></h1>
         </div>
     </div>
     <div class="main_up_team">
@@ -67,7 +98,7 @@
             
         </div>
         <div>
-            <img class="number"src="num.png">
+            <img class="number" src="num.png">
         </div>
         <div>
             <img src="8.png" class="main_up_team_img rounded mx-auto d-block" alt="...">
@@ -75,7 +106,7 @@
 
     </div>
 
-    <div class="main_up_div"style="margin:15px;">
+    <div class="main_up_div" style="margin:15px;">
         <div class="card horizontal_card">
             <div class="card_content">
                 <div class="card_front">
@@ -84,11 +115,14 @@
                 <div class="card_back">
                     <span>이름 : 양재석</span>
                     <span>Mbti : ENTJ</span>
-                    <button type="button" class="btn btn-light" style="margin-top: 8px;">자세히</button>
+                    <button type="button" class="moreinfobtn1 moreinfobtn btn btn-light"
+                        style="margin-top: 8px;">자세히</button>
                 </div>
             </div>
         </div>
+
         
+
         <div class="card horizontal_card">
             <div class="card_content">
                 <div class="card_front">
@@ -97,7 +131,8 @@
                 <div class="card_back">
                     <span>이름 : 이성운</span>
                     <span>Mbti : INFJ</span>
-                    <button type="button" class="btn btn-light" style="margin-top: 8px;">자세히</button>
+                    <button type="button" class="moreinfobtn3 moreinfobtn btn btn-light"
+                        style="margin-top: 8px;">자세히</button>
                 </div>
             </div>
         </div>
@@ -109,15 +144,17 @@
                 <div class="card_back">
                     <span>이름 : 김영규</span>
                     <span>Mbti : ESFJ</span>
-                    <button type="button" class="btn btn-light" style="margin-top: 8px;">자세히</button>
+                    <button type="button" class="moreinfobtn4 moreinfobtn btn btn-light"
+                        style="margin-top: 8px;">자세히</button>
                 </div>
             </div>
         </div>
+    </div>
 
-    <div class="modal">
+    <div id="info_modal1" class="modal">
         <div class="modal_body">
             <div class="row">
-                <img src="졸라맨.png"
+                <img src=""
                     style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
                 <div class="col-md-6" style="margin-top: 80px;">
                     <h3 class="card-title">양재석</h3>
@@ -136,9 +173,96 @@
                 <h3>Blog & GitHub</h3>
                 <p>내용</p>
             </div>
-            <button type="button" class="moreinfobtn btn btn-primary btn-lg">닫기</button>
+            <button type="button" class="moreinfobtn1 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
-
     </div>
-
+    <div id="info_modal2" class="modal">
+        <div class="modal_body">
+            <div class="row">
+                <img src=""
+                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">박경은</h3>
+                    <p class="card-text">ENFP</p>
+                </div>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>소개</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>역할</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>Blog & GitHub</h3>
+                <p>내용</p>
+            </div>
+            <button type="button" class="moreinfobtn2 moreinfobtn btn btn-primary btn-lg">닫기</button>
+        </div>
+    </div>
+    <div id="info_modal3" class="modal">
+        <div class="modal_body">
+            <div class="row">
+                <img src=""
+                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">이성운</h3>
+                    <p class="card-text">INFJ</p>
+                </div>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>소개</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>역할</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>Blog & GitHub</h3>
+                <p>내용</p>
+            </div>
+            <button type="button" class="moreinfobtn3 moreinfobtn btn btn-primary btn-lg">닫기</button>
+        </div>
+    </div>
+    <div id="info_modal4" class="modal">
+        <div class="modal_body">
+            <div class="row">
+                <img src=""
+                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">김영규</h3>
+                    <p class="card-text">ESFJ</p>
+                </div>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>소개</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>역할</h3>
+                <p>내용</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3>Blog & GitHub</h3>
+                <p>내용</p>
+            </div>
+            <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>
+        </div>
+    </div>
+    <div id="comm_modal" class="modal">
+        <div class="modal_body modal_mini">
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="title" placeholder="이름">
+                <label for="floatingInput">이름</label>
+            </div>
+            <div class="commentbox form-floating mb-3">
+                <textarea type="text" class="form-control" id="comment" placeholder="내용"></textarea>
+                <label for="floatingInput">내용</label>
+            </div>
+            <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
+        </div>
+    </div>
+    <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
 </html>
