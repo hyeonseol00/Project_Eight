@@ -47,13 +47,10 @@
 
         $(".moreinfobtn").click(async function () {
             let modal;
-            
+
             switch (this.className.split(' ')[0]) {
                 case "moreinfobtn1":
                     modal = document.querySelector('#info_modal1');
-                    break;
-                case "moreinfobtn2":
-                    modal = document.querySelector('#info_modal2');
                     break;
                 case "moreinfobtn3":
                     modal = document.querySelector('#info_modal3');
@@ -68,7 +65,6 @@
             else
                 modal.style.display = "none";
         });
-
 
         $(".commbtn").click(async function () {
             let modal = document.querySelector('#comm_modal');
@@ -90,12 +86,12 @@
     <div class="main_up_team">
         <div class="main_up_team_prd">
             <h1 style="margin-bottom: 3em;">Eight</h2>
-            <p>소개 : Team 8조를 맡은 에이트 입니다. </p>
-            <p>목표 : 활발히 소통하며 최대한 와이어프레임 설계한 만큼 페이지 구현하기!</p>
-            <p>규칙</p>
-            <p>1. 서로 배려하는 마음으로 소통하기</p>
-            <p>2. 편하게 서로 질문하기</p>
-            
+                <p>소개 : Team 8조를 맡은 에이트 입니다. </p>
+                <p>목표 : 활발히 소통하며 최대한 와이어프레임 설계한 만큼 페이지 구현하기!</p>
+                <p>규칙</p>
+                <p>1. 서로 배려하는 마음으로 소통하기</p>
+                <p>2. 편하게 서로 질문하기</p>
+
         </div>
         <div>
             <img class="number" src="num.png">
@@ -110,7 +106,7 @@
         <div class="card horizontal_card">
             <div class="card_content">
                 <div class="card_front">
-                    <img src="졸라맨.png">
+                    <img src="양재석.jpg" style="width: 100%; height: 100%;">
                 </div>
                 <div class="card_back">
                     <span>이름 : 양재석</span>
@@ -164,8 +160,8 @@
     <div id="info_modal1" class="modal">
         <div class="modal_body">
             <div class="row">
-                <img src=""
-                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
+                <img src="양재석.jpg"
+                    style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
                 <div class="col-md-6" style="margin-top: 80px;">
                     <h3 class="card-title">양재석</h3>
                     <p class="card-text">ENTJ</p>
@@ -173,42 +169,17 @@
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>소개</h3>
-                <p>내용</p>
+                <p>이번에 Eight 팀의 팀장을 맡게 된 양재석입니다!<br>프로젝트 진행하는 동안 잘 부탁드립니다ㅎㅎ</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>역할</h3>
-                <p>내용</p>
+                <p>S.A. 및 와이어프레임 작성<br>GitHub 프로젝트 업로드 및 배포<br>페이지 모달창부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>Blog & GitHub</h3>
-                <p>내용</p>
+                <p>https://velog.io/@hyeonseol22<br>https://github.com/hyeonseol00</p>
             </div>
             <button type="button" class="moreinfobtn1 moreinfobtn btn btn-primary btn-lg">닫기</button>
-        </div>
-    </div>
-    <div id="info_modal2" class="modal">
-        <div class="modal_body">
-            <div class="row">
-                <img src=""
-                    style="background-color: green; width: 200px; height: 200px; border:1px solid black; margin: 15px 20px;">
-                <div class="col-md-6" style="margin-top: 80px;">
-                    <h3 class="card-title">박경은</h3>
-                    <p class="card-text">ENFP</p>
-                </div>
-            </div>
-            <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>소개</h3>
-                <p>내용</p>
-            </div>
-            <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>역할</h3>
-                <p>내용</p>
-            </div>
-            <div class="modalbox bg-body-tertiary border rounded-3">
-                <h3>Blog & GitHub</h3>
-                <p>내용</p>
-            </div>
-            <button type="button" class="moreinfobtn2 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
     </div>
     <div id="info_modal3" class="modal">
@@ -227,11 +198,11 @@
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>역할</h3>
-                <p>내용</p>
+                <p>페이지 타이틀 및 팀원 자기소개 카드부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>Blog & GitHub</h3>
-                <p>내용</p>
+                <p>https://development-getting-better.tistory.com/<br>https://github.com/sw-64/</p>
             </div>
             <button type="button" class="moreinfobtn3 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
@@ -252,11 +223,11 @@
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>역할</h3>
-                <p>내용</p>
+                <p>페이지 방명록(댓글)부 개발</p>
             </div>
             <div class="modalbox bg-body-tertiary border rounded-3">
                 <h3>Blog & GitHub</h3>
-                <p>내용</p>
+                <p>https://github.com/ykyu99/</p>
             </div>
             <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>
         </div>
@@ -275,4 +246,5 @@
         </div>
     </div>
     <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
+
 </html>
