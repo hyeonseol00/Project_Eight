@@ -79,8 +79,8 @@ body {
 /* 중간 8의 이미지 ( 가운데 ) */
 .number{
     position: relative;
-    left:22px;
-    /* top:60px; */
+    /* left:22px;
+    top:60px; */
     width: 400px;
     height:400px;
     background-color : rgb(255,255,255); opacity : 0.1;
