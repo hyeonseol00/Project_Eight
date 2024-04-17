@@ -11,6 +11,8 @@ body {
     margin: 0;
 }
 
+
+/* 이성운 css start */
 /* 상단 navbar  */
 .nine h1 {
 
@@ -117,7 +119,7 @@ body {
 .horizontal_card .card_back { transform: rotateY(180deg); } 
 
 
-
+/* 이성운 css end */
 
 
 
