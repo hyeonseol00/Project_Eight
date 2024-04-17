@@ -118,7 +118,7 @@
             $('#card').append(temp_html);
         });
     // 김영규 js start
-    $("#postingbtn").click(async function () {
+    $("#repPostingBtn").click(async function () {
       let name = $('#name').val();
       let content = $('#content').val();
       let doc = {
@@ -129,6 +129,7 @@
       alert('등록 완료');
       window.location.reload();
     })
+
     let repDocs = await getDocs(collection(db, "books"));
     repDocs.forEach((doc) => {
       let key = doc.id;
@@ -172,14 +173,15 @@
       btnDelete.innerHTML = '삭제';
 
       btnDelete.addEventListener('click', async(event) => {
-        event.preventDefault();
-        const elementParent = event.target.parentElement.parentElement;
-        const elementKey = elementParent.id;
-        const elementName = elementParent.querySelector('.card-header').innerHTML;
-        const elementText = elementParent.querySelector('.card-text').innerHTML;
+        if(confirm("삭제를 진행하시겠습니까?")){
+            event.preventDefault();
+            const elementParent = event.target.parentElement.parentElement;
+            const elementKey = elementParent.id;
+            const elementName = elementParent.querySelector('.card-header').innerHTML;
+            const elementText = elementParent.querySelector('.card-text').innerHTML;
 
-        await db.collection("books").doc(elementKey).delete();
-        window.location.reload();
+            deleteReply(elementKey);
+        }
       })
 
       //btnDelete.onclick = deleteReply(key);
@@ -194,16 +196,36 @@
       $('#card222').append(cardDiv);
     });
 
+    //modal content sync
     function modifyContent(name,content,key){
       $('#nameModal').val(name);
       $('#contentModal').val(content);
       $('#keyModal').val(key);
     }
 
+    //delete
     async function deleteReply(key){
-      await db.collection("books").doc(key).delete();
+      //await db.collection("books").doc(key).delete();
+      await deleteDoc(doc(db, "books", key));
+      alert("삭제가 완료되었습니다.");
       window.location.reload();
     }
+
+    //update
+    $("#updateBtn").click(async function () {
+      let updtName = $('#nameModal').val();
+      let updtContent = $('#contentModal').val();
+      let updtKey = $('#keyModal').val();
+      if(confirm("수정하시겠습니까?")){
+      await updateDoc(doc(db, "books", updtKey), {
+        "name" : updtName ,
+        "content" : updtContent
+      });
+      alert('수정 완료');
+      window.location.reload();
+    }
+    })
+
     // 김영규 js end
 
     </script>
@@ -363,7 +385,6 @@
             <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
         </div>
     </div>
-    <button type="button" class="commbtn btn btn-primary btn-lg">수정</button>
 
     <!--김영규 html start-->
     <div class="book">
@@ -376,11 +397,12 @@
           <input type="email" class="form-control" id="content" placeholder="name@example.com">
           <label for="floatingInput">내용</label>
         </div>
-        <buttoon id="postingbtn" type="button" class="btn btn-dark">등록</button>
+        <buttoon id="repPostingBtn" type="button" class="btn btn-dark">등록</button>
       </div>
       </div>
       </div>
       <div class="mycards" id="card222">
+        <!--
         <div class="card">
           <h6 class="card-header">이름</h6>
           <div class="card-body">
@@ -389,6 +411,7 @@
             <a href="#" class="btn btn-secondary">삭제</a>
           </div>
         </div>
+        -->
       </div>
     
     <!-- Modal -->
@@ -401,16 +424,16 @@
           </div>
           <div class="modal-body">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="nameModal" placeholder="name@example.com">
+              <input type="email" class="form-control" id="nameModal">
               <label for="floatingInput">이름</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="email" class="form-control" id="contentModal" placeholder="name@example.com">
+              <input type="email" class="form-control" id="contentModal">
               <label for="floatingInput">내용</label>
           </div>
-              <input type="hidden" class="form-control" id="keyModal" placeholder="name@example.com">
+              <input type="hidden" class="form-control" id="keyModal">
           <div class="modal-footer">
-            <button type="button" class="btn btn-dark">수정</button>
+            <button id="updateBtn" type="button" class="btn btn-dark">수정</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
           </div>
         </div>
