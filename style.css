@@ -119,34 +119,42 @@ body {
 .horizontal_card .card_back { transform: rotateY(180deg); } 
 
 
-@media (max-width:1600px){
+
+@media (max-width:2000px){
     .main_8img{
-        display:none;
+        
     }
+}
+
+
+@media (max-width:1600px){
+    
     .main_up_team{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        column-gap: 300px;
+        margin-right:150px;
+        
+
     }
     #bgorder{
         
-        width:700px;
+        width:530px;
         position: static;
-        margin-top:20px;
+        
+        
     }
     .number{
         width: 180px;
         height: 180px;
+        margin:30px;
     }
-    
-    
-    
-
+      
+}
+@media (max-width:1300px){
     .card_block{
-
-        
-        flex-direction: column;
-        align-items: center;
+        width:250px;
+        height:250px;
     }
 }
 
