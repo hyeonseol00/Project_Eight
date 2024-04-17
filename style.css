@@ -175,3 +175,16 @@ body {
 .modaltitle{
     margin-top: 10px;
 }
+/*김영규 css start*/
+.book {
+  width: 450px;
+  margin: 30px auto 0px auto;
+}
+.mycards {
+  padding: 50px;
+}
+.card {
+  width: 450px;
+  margin: 30px auto 0px auto;
+}
+/*김영규 css end*/
