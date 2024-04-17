@@ -175,125 +175,117 @@
         });
         /* 양재석 js end */
 
-        // 김영규 js start
-        $("#repPostingBtn").click(async function () {
-            let name = $('#name').val();
-            let content = $('#content').val();
-            let doc = {
-                'name': name,
-                'content': content
-            };
-            await addDoc(collection(db, "books"), doc);
-            alert('등록 완료');
-            window.location.reload();
-        })
+    // 김영규 js start
+    $("#repPostingBtn").click(async function () {
+      let name = $('#name').val();
+      let content = $('#content').val();
+      let doc = {
+        'name': name,
+        'content': content
+      };
+      await addDoc(collection(db, "books"), doc);
+      alert('등록 완료');
+      window.location.reload();
+    })
 
-        let repDocs = await getDocs(collection(db, "books"));
-        repDocs.forEach((doc) => {
-            let key = doc.id;
-            let row = doc.data();
-            let name = row['name'];
-            let content = row['content'];
-            const cardDiv = document.createElement('div');
-            cardDiv.className = 'card card_custom';
-            cardDiv.id = key;
+    let repDocs = await getDocs(collection(db, "books"));
+    repDocs.forEach((doc) => {
+      let key = doc.id;
+      let row = doc.data();
+      let name = row['name'];
+      let content = row['content'];
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card';
+      cardDiv.setAttribute('style', 'width:450px; margin-top:8px; margin-left: auto; margin-right: auto;');
+      cardDiv.id = key;
 
-            const cardHeader = document.createElement('h6');
-            cardHeader.className = 'card-header';
-            cardHeader.innerHTML = name;
+      const cardHeader = document.createElement('h6');
+      cardHeader.className = 'card-header';
+      cardHeader.innerHTML = name;
 
-            const cardBody = document.createElement('div');
-            cardBody.className = 'card-body';
+      const cardBody = document.createElement('div');
+      cardBody.className = 'card-body';
 
-            const cardText = document.createElement('p');
-            cardText.className = 'card-text'
-            cardText.innerHTML = content;
+      const cardText = document.createElement('p');
+      cardText.className = 'card-text'
+      cardText.innerHTML = content;
 
-            const btnModify = document.createElement('a');
-            btnModify.classList = 'btn btn-dark';
-            btnModify.setAttribute('data-bs-toggle', 'modal');
-            btnModify.setAttribute('data-bs-target', '#modify');
-            btnModify.setAttribute('style', 'margin-right:4px;');
-            btnModify.innerHTML = '수정';
+      const btnModify = document.createElement('a');
+      btnModify.classList = 'btn btn-dark';
+      btnModify.setAttribute('data-bs-toggle', 'modal');
+      btnModify.setAttribute('data-bs-target', '#modify');
+      btnModify.setAttribute('style', 'margin-right:4px; margin-left:70%; float:left;');
+      btnModify.innerHTML = '수정';
 
-            btnModify.addEventListener('click', (event) => {
-                event.preventDefault();
-                const elementParent = event.target.parentElement.parentElement;
-                const elementKey = elementParent.id;
-                const elementName = elementParent.querySelector('.card-header').innerHTML;
-                const elementText = elementParent.querySelector('.card-text').innerHTML;
+      btnModify.addEventListener('click', (event) => {
+        event.preventDefault();
+        const elementParent = event.target.parentElement.parentElement;
+        const elementKey = elementParent.id;
+        const elementName = elementParent.querySelector('.card-header').innerHTML;
+        const elementText = elementParent.querySelector('.card-text').innerHTML;
 
-                modifyContent(elementName, elementText, elementKey);
-            })
+        modifyContent(elementName, elementText, elementKey);
+      })
 
-            const btnDelete = document.createElement('a');
-            btnDelete.classList = 'btn btn-secondary';
-            btnDelete.innerHTML = '삭제';
+      const btnDelete = document.createElement('a');
+      btnDelete.classList = 'btn btn-secondary';
+      btnDelete.innerHTML = '삭제';
+      btnDelete.setAttribute('style', 'float:left;');
             btnDelete.addEventListener('click', async (event) => {
                 if (confirm("삭제를 진행하시겠습니까?")) {
-                    event.preventDefault();
-                    const elementParent = event.target.parentElement.parentElement;
-                    const elementKey = elementParent.id;
-                    const elementName = elementParent.querySelector('.card-header').innerHTML;
-                    const elementText = elementParent.querySelector('.card-text').innerHTML;
+            event.preventDefault();
+            const elementParent = event.target.parentElement.parentElement;
+            const elementKey = elementParent.id;
+            const elementName = elementParent.querySelector('.card-header').innerHTML;
+            const elementText = elementParent.querySelector('.card-text').innerHTML;
 
-                    deleteReply(elementKey);
-                }
-            })
+            deleteReply(elementKey);
+        }
+      })
 
-            btnDelete.addEventListener('click', async (event) => {
-                event.preventDefault();
-                const elementParent = event.target.parentElement.parentElement;
-                const elementKey = elementParent.id;
-                const elementName = elementParent.querySelector('.card-header').innerHTML;
-                const elementText = elementParent.querySelector('.card-text').innerHTML;
+      //btnDelete.onclick = deleteReply(key);
 
-                await db.collection("books").doc(elementKey).delete();
-                window.location.reload();
-            })
+      cardBody.appendChild(cardText);
+      cardBody.appendChild(btnModify);
+      cardBody.appendChild(btnDelete);
 
-            //btnDelete.onclick = deleteReply(key);
+      cardDiv.appendChild(cardHeader);
+      cardDiv.appendChild(cardBody);
 
-            cardBody.appendChild(cardText);
-            cardBody.appendChild(btnModify);
-            cardBody.appendChild(btnDelete);
+      $('#card222').append(cardDiv);
+    });
 
-            cardDiv.appendChild(cardHeader);
-            cardDiv.appendChild(cardBody);
-
-            $('#card222').append(cardDiv);
-        });
-        //modal content sync
+    //modal content sync
         function modifyContent(name, content, key) {
-            $('#nameModal').val(name);
-            $('#contentModal').val(content);
-            $('#keyModal').val(key);
-        }
+      $('#nameModal').val(name);
+      $('#contentModal').val(content);
+      $('#keyModal').val(key);
+    }
 
-        //delete
+    //delete
         async function deleteReply(key) {
-            //await db.collection("books").doc(key).delete();
-            await deleteDoc(doc(db, "books", key));
-            alert("삭제가 완료되었습니다.");
-            window.location.reload();
-        }
+      //await db.collection("books").doc(key).delete();
+      await deleteDoc(doc(db, "books", key));
+      alert("삭제가 완료되었습니다.");
+      window.location.reload();
+    }
 
-        //update
-        $("#updateBtn").click(async function () {
-            let updtName = $('#nameModal').val();
-            let updtContent = $('#contentModal').val();
-            let updtKey = $('#keyModal').val();
+    //update
+    $("#updateBtn").click(async function () {
+      let updtName = $('#nameModal').val();
+      let updtContent = $('#contentModal').val();
+      let updtKey = $('#keyModal').val();
             if (confirm("수정하시겠습니까?")) {
-                await updateDoc(doc(db, "books", updtKey), {
+      await updateDoc(doc(db, "books", updtKey), {
                     "name": updtName,
                     "content": updtContent
-                });
-                alert('수정 완료');
-                window.location.reload();
-            }
-        })
+      });
+      alert('수정 완료');
+      window.location.reload();
+    }
+    })
 
-        // 김영규 js end
+    // 김영규 js end
 
     </script>
 </head>
@@ -313,10 +305,10 @@
                 <p>활발히 소통하고, 첫 프로젝트 페이지 완성을 목표로 달려봅시다ㅎㅎ!!</p>
                 <h5>팀 규칙 :</h5>
                 <p>1. 서로 배려하는 마음으로 소통하기<br>
-                    2. 적극적이고 편한 마음으로 질문하기<br>
-                    3. 부족해도 열심히 참여하며 발전하기<br>
-                    4. 포기하지 않기<br>
-                    5. 지각하지 않기</p>
+                2. 적극적이고 편한 마음으로 질문하기<br>
+                3. 부족해도 열심히 참여하며 발전하기<br>
+                4. 포기하지 않기<br>
+                5. 지각하지 않기</p>
         </div>
         <div>
             <img class="number" src="num.png">
@@ -357,7 +349,7 @@
         <div class="card_main horizontal_card">
             <div class="card_content">
                 <div class="card_front">
-                    <img src="김영규.jpeg" style="width: 100%; height: 100%;">
+                    <img src="김영규.jpeg" style="width: 70%; height: 100%;">
                 </div>
                 <div class="card_back">
                     <h1>김영규</h1>
@@ -374,24 +366,24 @@
     <div id="info_modal1" class="modal" style="display: none;">
         <div class="modal_body row">
             <div style="width: 520px;">
-                <div class="row">
+            <div class="row">
                     <img src="양재석.jpg"
                         style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
-                    <div class="col-md-6" style="margin-top: 80px;">
-                        <h3 class="card-title">양재석</h3>
-                        <p class="card-text">ENTJ</p>
-                    </div>
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">양재석</h3>
+                    <p class="card-text">ENTJ</p>
                 </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">소개</h3>
-                    <p>이번에 Eight 팀의 팀장을 맡게 된 양재석입니다!<br>프로젝트 진행하는 동안 잘 부탁드립니다ㅎㅎ</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">역할</h3>
-                    <p>S.A. 및 와이어프레임 작성<br>GitHub 프로젝트 업로드 및 배포<br>페이지 모달창부 개발</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">Blog & GitHub</h3>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">소개</h3>
+                <p>이번에 Eight 팀의 팀장을 맡게 된 양재석입니다!<br>프로젝트 진행하는 동안 잘 부탁드립니다ㅎㅎ</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">역할</h3>
+                <p>S.A. 및 와이어프레임 작성<br>GitHub 프로젝트 업로드 및 배포<br>페이지 모달창부 개발</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">Blog & GitHub</h3>
                     <p><a href="https://velog.io/@hyeonseol22">https://velog.io/@hyeonseol22</a><br>
                         <a href="https://github.com/hyeonseol00">https://github.com/hyeonseol00</a>
                     </p>
@@ -419,24 +411,24 @@
     <div id="info_modal3" class="modal" style="display: none;">
         <div class="modal_body row">
             <div style="width: 520px;">
-                <div class="row">
+            <div class="row">
                     <img src="이성운.png"
                         style="width: 200px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
-                    <div class="col-md-6" style="margin-top: 80px;">
-                        <h3 class="card-title">이성운</h3>
-                        <p class="card-text">INFJ</p>
-                    </div>
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">이성운</h3>
+                    <p class="card-text">INFJ</p>
                 </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">소개</h3>
-                    <p>팀 Eight의 팀원 이성운이라고 합니다. 잘 부탁드립니다!</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">역할</h3>
-                    <p>페이지 타이틀 및 팀원 자기소개 카드부 개발</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">Blog & GitHub</h3>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">소개</h3>
+                <p>팀 Eight의 팀원 이성운이라고 합니다. 잘 부탁드립니다!</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">역할</h3>
+                <p>페이지 타이틀 및 팀원 자기소개 카드부 개발</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">Blog & GitHub</h3>
                     <p><a href="https://development-getting-better.tistory.com/">https://development-getting-better.tistory.com/</a><br>
                         <a href="https://github.com/sw-64/">https://github.com/sw-64/</a>
                     </p>
@@ -465,24 +457,24 @@
     <div id="info_modal4" class="modal" style="display: none;">
         <div class="modal_body row">
             <div style="width: 520px;">
-                <div class="row">
+            <div class="row">
                     <img src="김영규.jpeg"
                         style="width: 160px; height: 200px; margin-left: 40px; padding: 0px 0px 0px 0px;">
-                    <div class="col-md-6" style="margin-top: 80px;">
-                        <h3 class="card-title">김영규</h3>
-                        <p class="card-text">ESFJ</p>
-                    </div>
+                <div class="col-md-6" style="margin-top: 80px;">
+                    <h3 class="card-title">김영규</h3>
+                    <p class="card-text">ESFJ</p>
                 </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">소개</h3>
-                    <p>안녕하세요 30살 김영규라고 합니다.</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">역할</h3>
-                    <p>페이지 방명록(댓글)부 개발</p>
-                </div>
-                <div class="modalbox bg-body-tertiary border rounded-3">
-                    <h3 class="modaltitle">Blog & GitHub</h3>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">소개</h3>
+                <p>안녕하세요 30살 김영규라고 합니다.</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">역할</h3>
+                <p>페이지 방명록(댓글)부 개발</p>
+            </div>
+            <div class="modalbox bg-body-tertiary border rounded-3">
+                <h3 class="modaltitle">Blog & GitHub</h3>
                     <p><a href="https://github.com/ykyu99/">https://github.com/ykyu99/</a></p>
                 </div>
                 <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>
@@ -525,53 +517,55 @@
     <div class="book">
         <h2>방명록</h2>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="name" placeholder="name@example.com">
-            <label for="floatingInput">이름</label>
+          <input type="email" class="form-control" id="name" placeholder="name@example.com">
+          <label for="floatingInput">이름</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="content" placeholder="name@example.com">
-            <label for="floatingInput">내용</label>
+          <input type="email" class="form-control" id="content" placeholder="name@example.com">
+          <label for="floatingInput">내용</label>
         </div>
-        <buttoon id="repPostingBtn" type="button" class="btn btn-dark">등록</button>
-    </div>
-    </div>
-    </div>
-    <div class="mycards" id="card222">
+            <buttoon id="repPostingBtn" type="button" class="btn btn-dark" style="margin-bottom: 20px; margin-left:81.5%">등록</button>
+      </div>
+      </div>
+      </div>
+      <div class="mycards" id="card222">
         <!--
         <div class="card">
-            <h6 class="card-header">이름</h6>
-            <div class="card-body">
-                <p class="card-text">내용</p>
-                <a href="#" class="btn btn-dark">수정</a>
-                <a href="#" class="btn btn-secondary">삭제</a>
-            </div>
+          <h6 class="card-header">이름</h6>
+          <div class="card-body">
+            <p class="card-text">내용</p>
+            <a href="#" class="btn btn-dark">수정</a>
+            <a href="#" class="btn btn-secondary">삭제</a>
+          </div>
         </div>
         -->
-    </div>
-
+      </div>
+    
     <!-- Modal -->
     <div class="modal fade" id="modify" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modifyModalLabel">수정하기</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="nameModal">
-                        <label for="floatingInput">이름</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="contentModal">
-                        <label for="floatingInput">내용</label>
-                    </div>
-                    <input type="hidden" class="form-control" id="keyModal">
-                    <div class="modal-footer">
-                        <button id="updateBtn" type="button" class="btn btn-dark">수정</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    </div>
-                </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modifyModalLabel">수정하기</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="nameModal">
+              <label for="floatingInput">이름</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="contentModal">
+              <label for="floatingInput">내용</label>
+          </div>
+              <input type="hidden" class="form-control" id="keyModal">
+          <div class="modal-footer">
+            <button id="updateBtn" type="button" class="btn btn-dark">수정</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 <!--김영규 html start-->
 
