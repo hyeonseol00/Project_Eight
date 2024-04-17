@@ -109,7 +109,7 @@ body {
 
 
 /* 카드 css */
-/*
+
 .card { position: relative; width: 350px; height: 350px; margin: 0px 40px; perspective: 400px; } 
 .card .card_content { position: absolute; width: 100%; height: 100%; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); border-radius: 10px; transition: transform 1s; transform-style: preserve-3d; } 
 .card:hover .card_content { transition: transform 0.5s; } 
@@ -118,8 +118,6 @@ body {
 .card .card_back { background: #8ea6ce; color: #fff; } 
 .horizontal_card:hover .card_content { transform: rotateY(180deg); } 
 .horizontal_card .card_back { transform: rotateY(180deg); } 
-*/
-
 
 /* 이성운 css end */
 
@@ -171,6 +169,8 @@ textarea{
 .modal_mini{
     width: 400px;
     height: 500px;
+
+    transform: translateY(30%); 
 }
 
 .commentbox{
@@ -191,7 +191,8 @@ textarea{
 /* 양재석 css end */
 
 /*김영규 css start*/
-/* .book {
+/*
+.book {
   width: 450px;
   margin: 30px auto 0px auto;
 }
@@ -201,5 +202,6 @@ textarea{
 .card {
   width: 450px;
   margin: 30px auto 0px auto;
-} */
+}
+*/
 /*김영규 css end*/
