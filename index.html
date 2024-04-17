@@ -57,13 +57,13 @@
 
             let temp_html = `
                 <div class="card border-secondary mb-3" style = "width: auto;">
-                    <div id="${id}" class="mdl_crd_hd card-header">
-                        <h5 align="left" style="width: 280px">${title}</h5>
+                    <div class="mdl_crd_body card-header">
+                        <h5 align="left" style="margin-bottom: 0px">${title}</h5>
+                    </div>
+                    <div id="${id}" class="mdl_crd_body card-body text-secondary">
+                        <p align="left" class="card-text">${comment}</p>
                         <button type="button" class="mdl_del_btn btn btn-dark">삭제</button>
                         <button type="button" class="mdl_udt_btn mini_mdl_onoff btn btn-secondary">수정</button>
-                    </div>
-                    <div class="card-body text-secondary">
-                        <p align="left" class="card-text">${comment}</p>
                     </div>
                 </div >
                 `;
@@ -391,7 +391,7 @@
                 <button type="button" class="moreinfobtn1 moreinfobtn btn btn-primary btn-lg">닫기</button>
             </div>
             <div id="mdl_js_comm" style="width: 520px;">
-                <div>
+                <div style="height: auto">
                     <h3 class="mb-3">양재석 팀원에게 한마디!</h3>
                     <div class="mdl_comm_text form-floating mb-1">
                         <input type="email" class="form-control" id="js_title" placeholder="제목">
