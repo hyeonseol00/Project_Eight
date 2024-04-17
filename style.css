@@ -109,13 +109,12 @@ body {
 
 
 /* 카드 css */
-
-.card { position: relative; width: 350px; height: 350px; margin: 0px 40px; perspective: 400px; } 
-.card .card_content { position: absolute; width: 100%; height: 100%; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); border-radius: 10px; transition: transform 1s; transform-style: preserve-3d; } 
-.card:hover .card_content { transition: transform 0.5s; } 
-.card .card_front,
-.card .card_back { display: flex; flex-direction: column;  justify-content: center; align-items: center; position: absolute; width: 100%; height: 100%; background: #fff; border-radius: 10px; font-size: 20px; color: #8ab4f8; text-align: center; backface-visibility: hidden; } 
-.card .card_back { background: #8ea6ce; color: #fff; } 
+.card_main { position: relative; width: 350px; height: 350px; margin: 0px 40px; perspective: 400px; } 
+.card_main .card_content { position: absolute; width: 100%; height: 100%; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); border-radius: 10px; transition: transform 1s; transform-style: preserve-3d; } 
+.card_main:hover .card_content { transition: transform 0.5s; } 
+.card_main .card_front,
+.card_main .card_back { display: flex; flex-direction: column;  justify-content: center; align-items: center; position: absolute; width: 100%; height: 100%; background: #fff; border-radius: 10px; font-size: 20px; color: #8ab4f8; text-align: center; backface-visibility: hidden; } 
+.card_main .card_back { background: #8ea6ce; color: #fff; } 
 .horizontal_card:hover .card_content { transform: rotateY(180deg); } 
 .horizontal_card .card_back { transform: rotateY(180deg); } 
 
@@ -177,6 +176,10 @@ textarea{
     height: 70%;
 }
 
+#mini_mdl_comment{
+    height: 100%;
+}
+
 #comment{
     resize: none;
     height: 100%;
@@ -186,22 +189,24 @@ textarea{
     margin-top: 10px;
 }
 
-.mdl_comm_text{
+.mdl_crd_hd>button{
+    float: right;
+    margin-left: 4px;
 }
 /* 양재석 css end */
 
 /*김영규 css start*/
-/*
+
 .book {
   width: 450px;
   margin: 30px auto 0px auto;
 }
 .mycards {
-  padding: 50px;
+  padding-bottom: 20px;
 }
-.card {
+.card_custom {
   width: 450px;
   margin: 30px auto 0px auto;
 }
-*/
+
 /*김영규 css end*/

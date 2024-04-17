@@ -57,12 +57,13 @@
 
             let temp_html = `
                 <div class="card border-secondary mb-3" style = "width: auto;">
-                    <div id="${id}" class="card-header">${title}
-                        <button type="button" class="mdl_del_btn btn btn-danger">삭제</button>
-                        <button type="button" class="mdl_udt_btn mini_mdl_onoff btn btn-warning">수정</button>
+                    <div id="${id}" class="mdl_crd_hd card-header">
+                        <h5 align="left" style="width: 280px">${title}</h5>
+                        <button type="button" class="mdl_del_btn btn btn-dark">삭제</button>
+                        <button type="button" class="mdl_udt_btn mini_mdl_onoff btn btn-secondary">수정</button>
                     </div>
                     <div class="card-body text-secondary">
-                        <p class="card-text">${comment}</p>
+                        <p align="left" class="card-text">${comment}</p>
                     </div>
                 </div >
                 `;
@@ -70,6 +71,12 @@
             switch (owner) {
                 case "Jaeseok":
                     $('#mdl_js_comm').append(temp_html);
+                    break;
+                case "Seongun":
+                    $('#mdl_su_comm').append(temp_html);
+                    break;
+                case "Younggyu":
+                    $('#mdl_yg_comm').append(temp_html);
                     break;
             }
         });
@@ -137,6 +144,14 @@
                     title = $('#js_title').val();
                     comment = $('#js_comment').val();
                     break;
+                case "Seongun":
+                    title = $('#su_title').val();
+                    comment = $('#su_comment').val();
+                    break;
+                case "Younggyu":
+                    title = $('#yg_title').val();
+                    comment = $('#yg_comment').val();
+                    break;
             }
 
             let commDocs = {
@@ -180,7 +195,7 @@
             let name = row['name'];
             let content = row['content'];
             const cardDiv = document.createElement('div');
-            cardDiv.className = 'card';
+            cardDiv.className = 'card card_custom';
             cardDiv.id = key;
 
             const cardHeader = document.createElement('h6');
@@ -313,7 +328,7 @@
     </div>
 
     <div class="main_up_div" style="margin:15px;">
-        <div class="card horizontal_card">
+        <div class="card_main horizontal_card">
             <div class="card_content">
                 <div class="card_front">
                     <img src="양재석.jpg" style="width: 100%; height: 100%;">
@@ -326,7 +341,7 @@
                 </div>
             </div>
         </div>
-        <div class="card horizontal_card">
+        <div class="card_main horizontal_card">
             <div class="card_content">
                 <div class="card_front">
                     <img src="이성운.png" style="width: 100%; height: 100%;">
@@ -339,7 +354,7 @@
                 </div>
             </div>
         </div>
-        <div class="card horizontal_card">
+        <div class="card_main horizontal_card">
             <div class="card_content">
                 <div class="card_front">
                     <img src="김영규.jpeg" style="width: 100%; height: 100%;">
@@ -428,7 +443,7 @@
                 </div>
                 <button type="button" class="moreinfobtn3 moreinfobtn btn btn-primary btn-lg">닫기</button>
             </div>
-            <div id="mdl_js_comm" style="width: 520px;">
+            <div id="mdl_su_comm" style="width: 520px;">
                 <div>
                     <h3 class="mb-3">이성운 팀원에게 한마디!</h3>
                     <div class="mdl_comm_text form-floating mb-1">
@@ -443,6 +458,7 @@
                         style="float: right;">등록</button>
                 </div>
                 <!-- append 댓글 카드 -->
+                
             </div>
         </div>
     </div>
@@ -471,7 +487,7 @@
                 </div>
                 <button type="button" class="moreinfobtn4 moreinfobtn btn btn-primary btn-lg">닫기</button>
             </div>
-            <div id="mdl_js_comm" style="width: 520px;">
+            <div id="mdl_yg_comm" style="width: 520px;">
                 <div>
                     <h3 class="mb-3">김영규 팀원에게 한마디!</h3>
                     <div class="mdl_comm_text form-floating mb-1">
