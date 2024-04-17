@@ -118,6 +118,39 @@ body {
 .horizontal_card:hover .card_content { transform: rotateY(180deg); } 
 .horizontal_card .card_back { transform: rotateY(180deg); } 
 
+
+@media (max-width:1600px){
+    .main_8img{
+        display:none;
+    }
+    .main_up_team{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #bgorder{
+        
+        width:700px;
+        position: static;
+        margin-top:20px;
+    }
+    .number{
+        width: 180px;
+        height: 180px;
+    }
+    
+    
+    
+
+    .card_block{
+
+        
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
 /* 이성운 css end */
 
 
