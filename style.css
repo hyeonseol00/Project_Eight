@@ -77,6 +77,7 @@ body {
 }
 .main_up_team_prd:hover{
     transform: scale(1.1);
+    box-shadow: 5px 5px 20px;
 }
 /* 중간 8의 이미지 ( 가운데 ) */
 .number{
@@ -98,6 +99,7 @@ body {
 } 
 .main_up_team_img:hover{
     transform: scale(1.1);
+    box-shadow: 5px 5px 20px;
 }
 /* 팀원들을 일일히 소개하는 파트 */
 .main_up_div {
@@ -240,7 +242,7 @@ textarea{
 
 .book {
   width: 450px;
-  margin: 30px auto 0px auto;
+  margin: 150px auto 0px auto;
 }
 .mycards {
   padding-bottom: 20px;
